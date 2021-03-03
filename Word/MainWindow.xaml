@@ -1,0 +1,341 @@
+﻿<Window x:Class="Word.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:local="clr-namespace:Word"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Width="1000" Height="600" MouseDown="Window_MouseDown">
+    <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58"/>
+            <RowDefinition Height="92"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF2A579A">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        Height="32" VerticalAlignment="Top">
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1" Click="Button_Click_8">
+                    <materialDesign:PackIcon Kind="WindowMinimize"/>
+                </Button>
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1" Click="Button_Click_7">
+                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                </Button>
+                <Button 
+                        Style="{DynamicResource NavButton}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1" Click="Button_Click">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                        Height="32" VerticalAlignment="Top">
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1">
+                    <materialDesign:PackIcon Kind="ContentSave"/>
+                </Button>
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1">
+                    <materialDesign:PackIcon Kind="SubdirectoryArrowLeft"/>
+                </Button>
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1">
+                    <materialDesign:PackIcon Kind="SubdirectoryArrowRight"/>
+                </Button>
+                <Button 
+                        Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="32" 
+                        VerticalAlignment="Top" Margin="1" Click="Button_Click_9">
+                    <materialDesign:PackIcon Kind="FolderOpen"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                        VerticalAlignment="Bottom" Height="26">
+            
+                <Button Style="{DynamicResource OtherNav}" Padding="0"
+                        BorderBrush="{x:Null}" Width="55" Height="26" 
+                        VerticalAlignment="Center" Margin="1,0,1,0" Content="Файл" Click="Button_Click_6"/>
+                
+                <TabControl Width="1000" x:Name="Nav" Margin="0,-2,0,0">
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="60" Height="26"  Uid="1"
+                        VerticalAlignment="Center" Margin="0,0,0,2" Header="Главная">
+                    </TabItem>
+
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="60" Height="28" Uid="2"
+                        VerticalAlignment="Center"  Header="Вставка"/>
+
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="60" Height="28" Uid="3"
+                        VerticalAlignment="Center" Header="Дизайн"/>
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="55" Height="28" Uid="4"
+                        VerticalAlignment="Center" Margin="1,1,1,0" Header="Макет" />
+
+                    <TabItem  Padding="0"
+                        BorderBrush="{x:Null}" Width="65" Height="28" Uid="5"
+                        VerticalAlignment="Center" Header="Ссылки"/>
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="73" Height="28" Uid="6"
+                        VerticalAlignment="Center" Header="Рассылки" />
+
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="109" Height="28" Uid="7"
+                        VerticalAlignment="Center"  Header="Рецензирование"/>
+                    <TabItem Padding="0"
+                        BorderBrush="{x:Null}" Width="45" Height="28" Uid="8"
+                        VerticalAlignment="Center"  Header="Вид"/>
+                    <TabItem Padding="0" 
+                        BorderBrush="{x:Null}" Width="90" Height="28" Uid="9"
+                        VerticalAlignment="Center" Margin="0" Header="Разработчик"/>
+
+                </TabControl>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Background="White">
+            <StackPanel>
+                <ToolBarTray Height="92" Background="Transparent">
+                    <ToolBar Margin="0,5,0,0" Height="87"
+                        ClipToBounds="False" Background="Transparent">
+                        <StackPanel Orientation="Vertical"  Margin="0,-6,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Button  BorderThickness="0" Height="70" Padding="0"
+                                 Width="56" Command="Paste"
+                                  Style="{DynamicResource tools}"
+                                  ToolTip="Вставить" Foreground="Transparent">
+                                    <StackPanel Orientation="Vertical">
+                                        <materialDesign:PackIcon Kind="ContentPaste" 
+                                                         Foreground="Gray"
+                                                         Height="40"
+                                                         Width="40"
+                                                         Margin="4,0,0,0"/>
+                                        <TextBlock Text="Вставить" TextAlignment="Center"
+                                       Foreground="#FF363636" FontSize="12"/>
+                                    </StackPanel>
+                                </Button>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                    <Button  BorderThickness="0" Height="23" Padding="0"
+                                  HorizontalAlignment="Left" Command="Cut"
+                                  Style="{DynamicResource tools}" Margin="5,3,0,0"
+                                  ToolTip="Вырезать" Foreground="Transparent">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ContentCut" 
+                                                         Foreground="Gray"
+                                                         Height="15"
+                                                         Width="15"
+                                                         Margin="5,3,0,0"/>
+                                            <TextBlock Text="Вырезать" TextAlignment="Center"
+                                       Foreground="#FF363636" FontSize="14"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button  BorderThickness="0" Height="23" Padding="0"
+                                  Style="{DynamicResource tools}" Margin="5,0,0,0"  Command="Copy"
+                                  ToolTip="Копировать" Foreground="Transparent"
+                                     HorizontalAlignment="Left" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ContentCopy" 
+                                                         Foreground="Gray"
+                                                         Height="15"
+                                                         Width="15"
+                                                         Margin="5,3,0,0"/>
+                                            <TextBlock Text="Копировать" TextAlignment="Center"
+                                       Foreground="#FF363636" FontSize="14"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button  BorderThickness="0" Height="23" Padding="0"
+                                  Style="{DynamicResource tools}" Margin="5,0,0,0" Click="Button_Click_1"
+                                  ToolTip="Выделить все" Foreground="Transparent">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FormSelect" 
+                                                         Foreground="Gray"
+                                                         Height="15"
+                                                         Width="15"
+                                                         Margin="5,3,0,0"/>
+                                            <TextBlock Text="Выделить все" TextAlignment="Center"
+                                       Foreground="#FF363636" FontSize="14"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="Буфер обмена" HorizontalAlignment="Center"
+                                       Foreground="Gray" FontSize="12"/>
+                        </StackPanel>
+                        
+                        <Border Margin="8,-4,0,0" Height="87" Width="1"
+                                Background="LightGray" BorderThickness="0"/>
+                        <StackPanel Orientation="Vertical" Margin="10,5,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox Padding="5"
+                                          Foreground="#FF363636"
+                                    Name="ComboBoxFontFamily" Width="80" IsEditable="True"
+                                          materialDesign:HintAssist.Hint="Шрифт"
+                                          materialDesign:HintAssist.HintOpacity=".26" SelectionChanged="ComboBoxFontFamily_SelectionChanged"
+                                          />
+                                <ComboBox Padding="5"
+                                          Foreground="#FF363636"
+                                    Name="ComboBoxFontSize" Width="40" Margin="5,0,0,0"
+                                          IsEditable="True" materialDesign:HintAssist.Hint="Размер"
+                                          materialDesign:HintAssist.HintOpacity=".26" SelectionChanged="ComboBoxFontSize_SelectionChanged"/>
+                                <Button Style="{DynamicResource tools}"
+                                        Width="27" Height="27" Margin="5,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatFontSizeIncrease}"
+                                        ToolTip="Увеличить размер шрифта" Click="Button_Click_2"/>
+                                <Button Style="{DynamicResource tools}"
+                                        Width="27" Height="27" Margin="2,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatFontSizeDecrease}"
+                                        ToolTip="Уменьшить размер шрифта" Click="Button_Click_3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Name="Bold"
+                                        Content="{materialDesign:PackIcon Kind=FormatBold}"
+                                        ToolTip="Полужирный" Click="ToggleButton_Click"/>
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Margin="2,0,0,0" Name="Italic"
+                                        Content="{materialDesign:PackIcon Kind=FormatItalic}"
+                                        ToolTip="Курсив" Click="ToggleButton_Click_1"/>
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Margin="2,0,0,0" Name="Underline"
+                                        Content="{materialDesign:PackIcon Kind=FormatUnderline}"
+                                        ToolTip="Подчеркнутый" Click="Underline_Click"/>
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Margin="2,0,0,0" Name="Strikethrough"
+                                        Content="{materialDesign:PackIcon Kind=FormatStrikethrough}"
+                                        ToolTip="Зачеркнутый" Click="Strikethrough_Click"/>
+                                <Border Margin="5,0,0,0" Height="15" Width="1"
+                                Background="LightGray" BorderThickness="0"/>
+                                <Button  Style="{DynamicResource ColorPickers}" Width="27"
+                                         Height="27" Margin="5,0,0,0"
+                                         ToolTip="Цвет выделения текста" Click="Button_Click_4">
+                                    <materialDesign:PackIcon Kind="FormatColorHighlight"
+                                                             Name="BackgroundColor"
+                                                             Foreground="#FF363636"/>
+                                </Button>
+                                <toolkit:ColorPicker Width="19"
+                                                     Name="BackgroundTextColor"
+                                                     ColorMode="ColorCanvas" SelectedColorChanged="BackgroundTextColor_SelectedColorChanged"/>
+                                <Button  Style="{DynamicResource ColorPickers}" Width="27"
+                                         Height="27" Margin="5,0,0,0"
+                                         ToolTip="Цвет шрифта" Click="Button_Click_5">
+                                    <materialDesign:PackIcon Kind="FormatColorText"
+                                                             Name="ForegroundColor"
+                                                             Foreground="#FF363636"/>
+                                </Button>
+                                <toolkit:ColorPicker Width="19"
+                                                     Name="TextColor"
+                                                     ColorMode="ColorCanvas" SelectedColorChanged="TextColor_SelectedColorChanged"/>
+                            </StackPanel>
+                            <TextBlock Text="Шрифт" HorizontalAlignment="Center"
+                                       Foreground="Gray" FontSize="12"/>
+                        </StackPanel>
+                        <Border Margin="8,-4,0,0" Height="87" Width="1"
+                                Background="LightGray" BorderThickness="0"/>
+                        <StackPanel Orientation="Vertical" Margin="10,5,0,0">
+                            <StackPanel Orientation="Horizontal">    
+                                <ComboBox Padding="0,5"
+                                          Foreground="#FF363636"
+                                          Width="35" Margin="5,0,0,0"
+                                          Name="ComboBoxInter" SelectionChanged="ComboBoxInter_SelectionChanged"/>
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Margin="5,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatListBulleted}"
+                                        ToolTip="Маркеры" Command="EditingCommands.ToggleBullets"/>
+                                <ToggleButton Style="{DynamicResource toolsTb}"
+                                        Width="27" Height="27" Margin="2,0,0,0" Command="EditingCommands.ToggleNumbering"
+                                        Content="{materialDesign:PackIcon Kind=FormatListNumbered}"
+                                        ToolTip="Нумерация"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Button Style="{DynamicResource tools}"
+                                        Width="27" Height="27" Command="AlignLeft"
+                                        Content="{materialDesign:PackIcon Kind=FormatAlignLeft}"
+                                        ToolTip="Выровнять по левому краю"/>
+                                <Button Style="{DynamicResource tools}" Command="AlignCenter"
+                                        Width="27" Height="27" Margin="2,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatAlignCenter}"
+                                        ToolTip="Выровнять по центру"/>
+                                <Button Style="{DynamicResource tools}" Command="AlignRight"
+                                        Width="27" Height="27" Margin="2,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatAlignRight}"
+                                        ToolTip="Выровнять по ширине"/>
+                                <Button Style="{DynamicResource tools}" Command="AlignJustify"
+                                        Width="27" Height="27" Margin="2,0,0,0"
+                                        Content="{materialDesign:PackIcon Kind=FormatAlignJustify}"
+                                        ToolTip="Уменьшить размер шрифта"/>
+                            </StackPanel>
+                            <TextBlock Text="Абзац" HorizontalAlignment="Center"
+                                       Foreground="Gray" FontSize="12"/>
+                        </StackPanel>
+                        <Border Margin="8,-4,0,0" Height="87" Width="2"
+                                Background="LightGray" BorderThickness="0"/>
+                    </ToolBar>
+                </ToolBarTray>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="2" Background="#FFE6E6E6">
+            <RichTextBox Background="White" Margin="20" Name="Word"
+                         Width="950" Padding="20" BorderThickness="1" BorderBrush="LightGray"                       
+                         FontSize="14"
+                         FontFamily="Times New Roman"
+                         Block.LineHeight="14" TextChanged="Word_TextChanged"/>
+        </Grid>
+        <Grid Grid.Row="3" Background="#FFF1F1F1">
+            <Border BorderBrush="#FFC6C6C6" BorderThickness="1" Width="4000" Height="200"
+                    Margin="-30, 0,0,0"
+                    Style="{StaticResource MaterialDesignToolBarMainPanelBorderStyle}"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0">
+                <TextBlock Text="Число слов: " Foreground="#FF363636"/>
+                <TextBlock Text="0" Foreground="#FF363636" Name="Words"/>
+                <TextBlock Text="Число символов: " Foreground="#FF363636" Margin="10,0,0,0"/>
+                <TextBlock Text="0" Foreground="#FF363636" Name="Letters"/>
+                <TextBlock Text="" Foreground="#FF363636" Margin="10,0,0,0" Name="Lang"/>
+            </StackPanel>
+        </Grid>
+        <Grid Name="GridMenu" Grid.Row="1" Grid.RowSpan="3" Margin="5"  Width="120" HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" Background="White" Visibility="Hidden">
+            <Border BorderBrush="LightGray" BorderThickness="1">
+                <StackPanel Name="Menu_Button" Orientation="Vertical">
+                    <Button  Style="{DynamicResource tools}" Content="Открыть"
+                             Height="25" Margin="0,2,0,0"/>
+                    <Button Style="{DynamicResource tools}" Content="Сохранить"
+                            Height="25" Margin="0,2,0,0"/>
+                    <Button Style="{DynamicResource tools}" Content="Новый документ"
+                            Height="25" Margin="0,2,0,0"/>
+                    <Button Style="{DynamicResource tools}" Content="Печать"
+                            Height="25" Margin="0,2,0,2"/>
+                </StackPanel>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="BorderBrush" Value="#FF111111"/>
+                        <Setter Property="BorderThickness" Value="1.5"/>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+        </Grid>
+    </Grid>
+</Window>
