@@ -15,6 +15,7 @@ using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Word
 {
@@ -31,12 +32,12 @@ namespace Word
             ComboBoxFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             ComboBoxFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
-            ComboBoxFontFamily.SelectedIndex = 165; //203 комп
+            ComboBoxFontFamily.SelectedIndex = 203; //165 ноут
             ComboBoxFontSize.SelectedIndex = 5;
             ComboBoxInter.SelectedIndex = 2;
             Lang.Text = InputLanguage.CurrentInputLanguage.LayoutName;
 
-            
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) => this.DragMove();
@@ -102,7 +103,7 @@ namespace Word
             if (a < 0) return;
             ComboBoxFontSize.SelectedIndex = a;
             if (ComboBoxFontSize.SelectedItem == null) return;
-            Word.Selection.ApplyPropertyValue(Inline.FontSizeProperty, ComboBoxFontSize.SelectedItem);           
+            Word.Selection.ApplyPropertyValue(Inline.FontSizeProperty, ComboBoxFontSize.SelectedItem);
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -155,19 +156,69 @@ namespace Word
                 GridMenu.Visibility = Visibility.Visible;
         }
 
-        private void Button_Click_7(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Maximized;
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                Max.Kind = PackIconKind.WindowMaximize;
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                Max.Kind = PackIconKind.WindowRestore;
+                this.WindowState = WindowState.Maximized;
+            }
+        }
 
         private void Button_Click_8(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            
+            if (GridMenu.IsVisible == true) GridMenu.Visibility = Visibility.Hidden;
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            if (openFileDialog.ShowDialog() != true) return;
+            openFileDialog.FileName = "Document";
             openFileDialog.DefaultExt = ".txt";
-            openFileDialog.InitialDirectory = "c:/";
-            openFileDialog.Filter = "Text documents (.txt)|*.txt";
-            string path = openFileDialog.FileName;
+            openFileDialog.Filter = "Text files(*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() != true) return;
+            TextRange doc = new TextRange(Word.Document.ContentStart, Word.Document.ContentEnd);
+            using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
+            {
+                if (System.IO.Path.GetExtension(openFileDialog.FileName).ToLower() == ".txt")
+                    doc.Load(fs, System.Windows.DataFormats.Text);
+            }
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            if (GridMenu.IsVisible == true) GridMenu.Visibility = Visibility.Hidden;
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+            if (saveFileDialog.ShowDialog() != true) return;
+            TextRange doc = new TextRange(Word.Document.ContentStart, Word.Document.ContentEnd);
+            using (FileStream fs = File.Create(saveFileDialog.FileName))
+            {
+                if (System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower() == ".txt")
+                    doc.Save(fs, System.Windows.DataFormats.Text);
+            }
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            if (GridMenu.IsVisible == true) GridMenu.Visibility = Visibility.Hidden;
+            Word.SelectAll();
+            Word.Selection.Text = "";
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e) => Word.Redo();
+
+        private void Button_Click_13(object sender, RoutedEventArgs e) => Word.Undo();
+
+        private void Button_Click_14(object sender, RoutedEventArgs e)
+        {
+            if (GridMenu.IsVisible == true) GridMenu.Visibility = Visibility.Hidden;
+            System.Windows.Controls.PrintDialog printDialog = new System.Windows.Controls.PrintDialog();
+            if (printDialog.ShowDialog() == true)
+                printDialog.PrintVisual(Word, "");
         }
     }
 

@@ -34,7 +34,7 @@
                         Style="{DynamicResource OtherNav}" Padding="0"
                         BorderBrush="{x:Null}" Width="45" Height="32" 
                         VerticalAlignment="Top" Margin="1" Click="Button_Click_7">
-                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                    <materialDesign:PackIcon Kind="WindowMaximize" Name="Max"/>
                 </Button>
                 <Button 
                         Style="{DynamicResource NavButton}" Padding="0"
@@ -49,25 +49,29 @@
                 <Button 
                         Style="{DynamicResource OtherNav}" Padding="0"
                         BorderBrush="{x:Null}" Width="45" Height="32" 
-                        VerticalAlignment="Top" Margin="1">
+                        VerticalAlignment="Top" Margin="1"
+                        ToolTip="Сохранить как" Click="Button_Click_10">
                     <materialDesign:PackIcon Kind="ContentSave"/>
                 </Button>
                 <Button 
                         Style="{DynamicResource OtherNav}" Padding="0"
                         BorderBrush="{x:Null}" Width="45" Height="32" 
-                        VerticalAlignment="Top" Margin="1">
+                        VerticalAlignment="Top" Margin="1"
+                        ToolTip="Назад" Click="Button_Click_13">
                     <materialDesign:PackIcon Kind="SubdirectoryArrowLeft"/>
                 </Button>
                 <Button 
                         Style="{DynamicResource OtherNav}" Padding="0"
                         BorderBrush="{x:Null}" Width="45" Height="32" 
-                        VerticalAlignment="Top" Margin="1">
+                        VerticalAlignment="Top" Margin="1" 
+                        ToolTip="Вперед" Click="Button_Click_12">
                     <materialDesign:PackIcon Kind="SubdirectoryArrowRight"/>
                 </Button>
                 <Button 
                         Style="{DynamicResource OtherNav}" Padding="0"
                         BorderBrush="{x:Null}" Width="45" Height="32" 
-                        VerticalAlignment="Top" Margin="1" Click="Button_Click_9">
+                        VerticalAlignment="Top" Margin="1" Click="Button_Click_9"
+                        ToolTip="Открыть">
                     <materialDesign:PackIcon Kind="FolderOpen"/>
                 </Button>
             </StackPanel>
@@ -320,13 +324,13 @@
             <Border BorderBrush="LightGray" BorderThickness="1">
                 <StackPanel Name="Menu_Button" Orientation="Vertical">
                     <Button  Style="{DynamicResource tools}" Content="Открыть"
-                             Height="25" Margin="0,2,0,0"/>
+                             Height="25" Margin="0,2,0,0" Click="Button_Click_9"/>
                     <Button Style="{DynamicResource tools}" Content="Сохранить"
-                            Height="25" Margin="0,2,0,0"/>
+                            Height="25" Margin="0,2,0,0" Click="Button_Click_10"/>
                     <Button Style="{DynamicResource tools}" Content="Новый документ"
-                            Height="25" Margin="0,2,0,0"/>
+                            Height="25" Margin="0,2,0,0" Click="Button_Click_11" />
                     <Button Style="{DynamicResource tools}" Content="Печать"
-                            Height="25" Margin="0,2,0,2"/>
+                            Height="25" Margin="0,2,0,2" Click="Button_Click_14"/>
                 </StackPanel>
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">
